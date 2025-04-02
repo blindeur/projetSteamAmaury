@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="../Assets/CSS/animation.css">
     <link rel="stylesheet" href="../Assets/CSS/flex.css">
     <link rel="stylesheet" href="../Assets/CSS/form.css">
+    <link rel="stylesheet" href="../Assets/CSS/styles.css">
+    <link rel="icon" type="image/jpg" href="../Assets/Images/logoProjet.jpg">
     <!-- on personalisera le titre de la page en fonction de la page sur laquelle on va => variable php $title -->
     <title><?= $title ?></title>
 </head>
@@ -15,7 +17,7 @@
     <header> <!-- contenu prévu composant de référence => insertion Php -->
         <?php require_once("Views/Components/navBar.php"); ?>
     </header>
-    <main>  <!-- contenu variable => insertion Php avec variable $template qui sera définie lors du routage -->
+    <main class="justify-content-center align-item-center">  <!-- contenu variable => insertion Php avec variable $template qui sera définie lors du routage -->
         <?php require_once($template); ?>
     </main>
     <footer>

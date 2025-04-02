@@ -1,6 +1,7 @@
-main {
+
+.magasin{
     font-family: Arial, sans-serif;
-    background-color: #eee1e1;
+    background-color: #323b49;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -15,6 +16,19 @@ main {
 h2 {
     margin-bottom: 20px;
     color: #333333;
+}
+
+.imageIcon {
+    width: 40px;
+    padding: 20px;
+    margin: auto;
+
+}
+main{
+        background-image: url('../Assets/Images/229.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
 }
 
 

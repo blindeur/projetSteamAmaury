@@ -1,5 +1,5 @@
 
-<div class="form-container">
+<div class="form-container" >
     <h2>Inscription</h2>
     <form action="register.php" method="post">
         <label for="firstname">Prénom :</label>

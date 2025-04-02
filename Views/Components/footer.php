@@ -1,7 +1,7 @@
 <div class="flexible space-between align-item-center">
-    <div>
-        <img class="imageIcon" src="../../Assets/Images/icon1.jpg" alt="image twitter">
-        <img class="imageIcon" src="../../Assets/Images/icon2.jpg" alt="image facebook">
-        <img class="imageIcon" src="../../Assets/Images/icon3.jpg" alt="image google">
+    <div class="flexible">
+        <img class="imageIcon" src="../../Assets/Images/discord.png" alt="image discord">
+        <img class="imageIcon" src="../../Assets/Images/instagram_icon.png" alt="image instagram">
+        <img class="imageIcon" src="../../Assets/Images/google.png" alt="image google">
     </div>
 </div>
