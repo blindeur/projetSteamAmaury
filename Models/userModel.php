@@ -10,18 +10,19 @@ function createUser($pdo)
 
     try{
         //définition de la requête d'insertion en utilisant la notion de paramètre 
-        $query = 'insert into utilisateurs(nomUser, prenomUser, loginUser, passWordUser, emailUser, role) 
-        values (:nomUser, :prenomUser, :loginUser, :passWordUser, :emailUser, :role)';
+        $query = 'insert into utilisateur(utilisateurNom, utilisateurPrenom, utilisateurDate,utilisateurLogin, utilisateurMotDePasse, utilisateurEmail,utilisateurStatut) 
+        values (:utilisateurNom, :utilisateurPrenom, :utilisateurDate, :utilisateurLogin, :utilisateurMotDePasse, :utilisateurEmail, :utilisateurStatut)';
         //préparation de la requête
         $ajouterUser = $pdo->prepare($query);
         //exécution en attribuant les valeurs récupérées dans le formulaire aux paramètres
         $ajouterUser->execute([
-            'nomUser' => $_POST["nom"],
-            'prenomUser' => $_POST["prenom"],
-            'loginUser' => $_POST["login"],
-            'passWordUser' => $_POST["mot_de_passe"],
-            'emailUser' => $_POST["email"],
-            'role' => 'user' 
+            'utilisateurNom' => $_POST["nom"],
+            'utilisateurPrenom' => $_POST["prenom"],
+            'utilisateurDate' => $_POST["date_de_naissance"],
+            'utilisateurEmail' => $_POST["email"],
+            'utilisateurLogin' => $_POST["Nom_utilisateur"],
+            'utilisateurMotDePasse' => $_POST["mot_de_passe"],
+            'utilisateurStatut' => 'user' 
         ]);
     }catch (PDOEXCEPTION $e) {
         $message = $e->getMessage();
@@ -39,16 +40,17 @@ function connectUser($pdo)
 {
     try {
         //définition de la rquête select en utilisant la notion de paramètre 
-        $query = 'select * from utilisateurs where loginUser = :loginUser and passWordUser = :passWordUser';
+        $query = 'select * from utilisateur where utilisateurLogin = :utilisateurLogin and utilisateurMotDePasse = :utilisateurMotDePasse';
         //préparation de la requête 
         $connectUser = $pdo->prepare($query);
         //exécution en attribuant les valeurs récupérées dans le formulaire aux paramètres
         $connectUser->execute([
-            'loginUser' => $_POST["login"],
-            'passWordUser' => $_POST["mot_de_passe"]
+            'utilisateurLogin' => $_POST["Nom_utilisateur"],
+            'utilisateurMotDePasse' => $_POST["mot_de_passe"]
         ]);
         //stokage des données trouvées dans la variavle $user
         $user = $connectUser->fetch();
+        var_dump($user);
         if (!$user){
             return false;
         }
@@ -74,15 +76,15 @@ function updateUser($pdo)
     try {
         //définitino de la rêquete de mise à jour en utilisant la notion de paramètre 
         //sans oublier le critère ! pour ne pas modifier toutes les lignes de la table utilisateur !
-        $query = 'update utilisateur set monUser = : nomUser, prenomUser = :prenomUser,passWordUser = :passWordUser, emailUser = :emailUser where id = id';
+        $query = 'update utilisateur set utilisateurNom = : utilisateurNom, utilisateurPrenom = :utilisateurPrenom,utilisateurMotDePasse = :utilisateurMotDePasse, utilisateurEmail = :utilisateurEmail where id = id';
         //préparation de la rêquete
         $ajouteUser = $pdo->prepare($query);
         //exécution en attribuant les valeurs récupérées dans le formulaire aux paramètres
         $ajouteUser->execute([
-            'nomUser' => $_POST["nom"],
-            'prenomUser' => $_POST["prenom"],
-            'passWordUser' => $_POST["mot_de_passe"],
-            'emailUser' => $_POST["email"],
+            'utilisateurNom' => $_POST["nom"],
+            'utilisateurPrenom' => $_POST["prenom"],
+            'utilisateurMotDePasse' => $_POST["mot_de_passe"],
+            'utilisateurEmail' => $_POST["email"],
             'id' => $_SESSION["user"]->id // récupération de l'id de l'utilisateur en session actuellement connecté
         ]);
     } catch (PDOException $e) {
@@ -100,10 +102,10 @@ IN : $pdo reprenant toutes les informations de connexion
 function updateSession($pdo)
 {
     try {
-        $query ='select * from utilisateur where id = :id';
+        $query ='select * from utilisateur where utilisateurID = :utilisateurID';
         $selectUser = $pdo->prepare($query);
         $selectUser->execute([
-            'id' => $_SESSION["user"]->id  //récupération de l'id de l'utilisateur en session actuellement connecté
+            'utilisateurID' => $_SESSION["user"]->utilisateurID  //récupération de l'id de l'utilisateur en session actuellement connecté
         ]);
         $user = $selectUser->fetch(); // pas fetchall car on ne veut pas qu'une ligne ! 
         $_SESSION["user"] = $user;

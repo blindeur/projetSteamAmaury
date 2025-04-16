@@ -1,7 +1,7 @@
 <!-- entièrement composée de code php qui va chercher ce dont on a besoin pour fabriquer la page -->
 
 <?php       // non fermé car seulement du php
-    
+    require_once("config/connectDataBase.php");
     require_once("Controllers/indexController.php");
     require_once("Controllers/userController.php");
     
