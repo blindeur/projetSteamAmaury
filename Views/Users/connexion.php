@@ -1,7 +1,7 @@
 <div class="form-container">
     <h2>Connexion</h2>
     <form action="connexion" method="post">
-        <label for="username">Nom d'utilisateur :</label>
+        <label for="username">Nom :</label>
         <input type="text" id="Nom_utilisateur" name="Nom_utilisateur" required>
 
         <label for="password">Mot de passe :</label>

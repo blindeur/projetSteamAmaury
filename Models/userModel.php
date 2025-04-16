@@ -10,17 +10,16 @@ function createUser($pdo)
 
     try{
         //définition de la requête d'insertion en utilisant la notion de paramètre 
-        $query = 'insert into utilisateur(utilisateurNom, utilisateurPrenom, utilisateurDate,utilisateurLogin, utilisateurMotDePasse, utilisateurEmail,utilisateurStatut) 
-        values (:utilisateurNom, :utilisateurPrenom, :utilisateurDate, :utilisateurLogin, :utilisateurMotDePasse, :utilisateurEmail, :utilisateurStatut)';
+        $query = 'insert into utilisateur(utilisateurNom, utilisateurPrenom, utilisateurDate, utilisateurMotDePasse, utilisateurEmail,utilisateurStatut) 
+        values (:utilisateurNom, :utilisateurPrenom, :utilisateurDate, :utilisateurMotDePasse, :utilisateurEmail, :utilisateurStatut)';
         //préparation de la requête
         $ajouterUser = $pdo->prepare($query);
         //exécution en attribuant les valeurs récupérées dans le formulaire aux paramètres
         $ajouterUser->execute([
-            'utilisateurNom' => $_POST["nom"],
+            'utilisateurNom' => $_POST["Nom_utilisateur"],
             'utilisateurPrenom' => $_POST["prenom"],
             'utilisateurDate' => $_POST["date_de_naissance"],
             'utilisateurEmail' => $_POST["email"],
-            'utilisateurLogin' => $_POST["Nom_utilisateur"],
             'utilisateurMotDePasse' => $_POST["mot_de_passe"],
             'utilisateurStatut' => 'user' 
         ]);
@@ -40,12 +39,12 @@ function connectUser($pdo)
 {
     try {
         //définition de la rquête select en utilisant la notion de paramètre 
-        $query = 'select * from utilisateur where utilisateurLogin = :utilisateurLogin and utilisateurMotDePasse = :utilisateurMotDePasse';
+        $query = 'select * from utilisateur where utilisateurNom = :utilisateurNom and utilisateurMotDePasse = :utilisateurMotDePasse';
         //préparation de la requête 
         $connectUser = $pdo->prepare($query);
         //exécution en attribuant les valeurs récupérées dans le formulaire aux paramètres
         $connectUser->execute([
-            'utilisateurLogin' => $_POST["Nom_utilisateur"],
+            'utilisateurNom' => $_POST["Nom_utilisateur"],
             'utilisateurMotDePasse' => $_POST["mot_de_passe"]
         ]);
         //stokage des données trouvées dans la variavle $user
@@ -81,7 +80,7 @@ function updateUser($pdo)
         $ajouteUser = $pdo->prepare($query);
         //exécution en attribuant les valeurs récupérées dans le formulaire aux paramètres
         $ajouteUser->execute([
-            'utilisateurNom' => $_POST["nom"],
+            'utilisateurNom' => $_POST["Nom_utilisateur"],
             'utilisateurPrenom' => $_POST["prenom"],
             'utilisateurMotDePasse' => $_POST["mot_de_passe"],
             'utilisateurEmail' => $_POST["email"],
