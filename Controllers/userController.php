@@ -8,7 +8,6 @@ var_dump($uri);
 if ($uri === "/connexion") {
     //vérifier si l'utilisateur a cliqueé sur le bouton du formulaire
     if(isset($_POST['btnEnvoi'])){
-        var_dump($_POST);
         // pour récuperer l'erreur si l'utilisateur fait une faute de frappe ou se trompe dans ses identifiants
         $erreur=false;
         // tentative de connexion et récuperation des données de l'utilisateur et ouverture d'une session
@@ -26,11 +25,7 @@ if ($uri === "/connexion") {
     require_once("Views/base.php");             //appel de la page de base qui sera remplie avec la vue demandée
 
 }
-elseif ($uri === "/deconnexion") {      // on anticipe pour la suite
-    // a voir plus tard
-}
 elseif ($uri ==="/inscription") {
-    var_dump($_POST);
     if(isset($_POST['btnEnvoi'])){
         // vérifiaction des données encodées
         $messageError = verifEmptyData();
@@ -48,7 +43,7 @@ elseif ($uri ==="/inscription") {
     require_once("Views/base.php");             //appel de la page de base qui sera remplie avec la vue demandée
                 
 }
-elseif ($uri ==="/updateProfil") {
+elseif ($uri ==="/profil") {
     if(isset($_POST['btnEnvoi'])){
         //vérification des données encodées
         $messageError = verifEmptyData();

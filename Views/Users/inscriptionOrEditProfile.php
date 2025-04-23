@@ -3,21 +3,21 @@
     <h2>Inscription</h2>
     <form action="" method="post">
         <label for="firstname">Nom :</label>
-        <input type="text" id="Nom_utilisateur" name="Nom_utilisateur" required>
-                
+        <input type="text" id="Nom_utilisateur" name="Nom_utilisateur" required <?php if (isset($_SESSION['user'])) : ?>value="<?= $_SESSION['user']->utilisateurNom ?>" <?php endif ?>>  
+
         <label for="lastname">prenom:</label>
-        <input type="text" id="prenom" name="prenom" required>
+        <input type="text" id="prenom" name="prenom" required required <?php if (isset($_SESSION['user'])) : ?>value="<?= $_SESSION['user']->utilisateurPrenom ?>" <?php endif ?>>
 
         <label for="date">date de naissance :</label>
-        <input type="date"id="date_de_naissance" name="date_de_naissance" required>
+        <input type="date"id="date_de_naissance" name="date_de_naissance" required required <?php if (isset($_SESSION['user'])) : ?>value="<?= $_SESSION['user']->utilisateurDate ?>" <?php endif ?>>
 
         <label for="email">Email :</label>
-        <input type="email" id="email" name="email" required>
+        <input type="email" id="email" name="email" required required <?php if (isset($_SESSION['user'])) : ?>value="<?= $_SESSION['user']->utilisateurEmail ?>" <?php endif ?>>
                        
         <label for="password">Mot de passe :</label>
-        <input type="password" id="mot_de_passe" name="mot_de_passe" required>
+        <input type="password" id="mot_de_passe" name="mot_de_passe" required required <?php if (isset($_SESSION['user'])) : ?>value="<?= $_SESSION['user']->utilisateurMotDePasse ?>" <?php endif ?>>
                 
-        <button name="btnEnvoi" class="btn btn-primary" value="inscription">S'inscrire</button>
+        <button name="btnEnvoi" class="btn btn-primary" value="inscription"><?php if (isset($_SESSION['user'])) : ?> <?= "mettre a jour "?> <?php else :?> <?= "inscription"?><?php endif ?></button>
         <a href="connexion"> Se connecter</a>
     </form>
 </div>
