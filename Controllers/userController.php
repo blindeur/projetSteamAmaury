@@ -57,6 +57,12 @@ elseif ($uri ==="/profil") {
             header('location:/profil');
         }
     }
+    elseif ($_POST['btnSupp'] ) {
+                                //supprimer toutes les informations de la table école liées à l'utilisateur connecté
+        deleteUser($pdo);                   //supprimer l'utilisateur de la tavle des utilisateurs
+        header("location:/deconnexion");    // le déconnecter
+    
+    }
     $title = "Mise à jour du profil";               //titre à afficher dans l'onglet de la page du navigateur
     $template = "Views/Users/inscriptionOrEditProfile.php";                 //chemin vers la vue demandée
     require_once("Views/base.php");                 // appel de la page de base qui sera remplie avec la vue demandée
@@ -69,11 +75,33 @@ elseif ($uri ==="/deconnexion") {
 
 }
 elseif ($uri === "/deleteProfil") {
-    deleteOptionsSchoolFromUser($pdo);
-    deleteAllSchoolsFromUser($pdo);      //supprimer toutes les informations de la table école liées à l'utilisateur connecté
-    deleteUser($pdo);                   //supprimer l'utilisateur de la tavle des utilisateurs
-    header("location:/deconnexion");    // le déconnecter
+
+        deleteOptionsSchoolFromUser($pdo);
+        deleteAllSchoolsFromUser($pdo);      //supprimer toutes les informations de la table école liées à l'utilisateur connecté
+        deleteUser($pdo);                   //supprimer l'utilisateur de la tavle des utilisateurs
+        header("location:/deconnexion");    // le déconnecter
+    
+   
 }
+
+elseif ($uri === "/updateProfil") { 
+    if(isset($_POST['btnEnvoi'])){
+        //vérification des données encodées
+        $messageError = verifEmptyData();
+        // s'il n'y a pas d'erreur
+        if(!$messageError){
+            // Modification des données de l'utilisateur dans la base de données
+            updateUser($pdo);
+            //Mise à jour de la variable session
+            updateSession($pdo);
+            header('location:/profil');
+        }
+    }
+    $title = "Mise à jour du profil";                //titre à afficher dans l'onglet de la page du navigateur
+    $template = "Views/Users/inscriptionOrEditProfile.php";  //chemin vers la vue demandée
+    require_once("Views/base.php");              // appel de la page de base qui sera remplie avec la vue demandée
+}
+
 
 
 /*

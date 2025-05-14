@@ -75,7 +75,7 @@ function updateUser($pdo)
     try {
         //définitino de la rêquete de mise à jour en utilisant la notion de paramètre 
         //sans oublier le critère ! pour ne pas modifier toutes les lignes de la table utilisateur !
-        $query = 'update utilisateur set utilisateurNom = :utilisateurNom, utilisateurPrenom = :utilisateurPrenom,utilisateurMotDePasse = :utilisateurMotDePasse, utilisateurStatut = :utilisateurStatut, utilisateurEmail = :utilisateurEmail where utilisateurID = :utilisateurID,';
+        $query = 'update utilisateur set utilisateurNom = :utilisateurNom, utilisateurPrenom = :utilisateurPrenom, utilisateurMotDePasse = :utilisateurMotDePasse, utilisateurDate = :utilisateurDate,  utilisateurEmail = :utilisateurEmail, utilisateurStatut = :utilisateurStatut where utilisateurID = :utilisateurID';
         //préparation de la rêquete
         $ajouteUser = $pdo->prepare($query);
         //exécution en attribuant les valeurs récupérées dans le formulaire aux paramètres
@@ -125,10 +125,10 @@ IN : $pdo reprenant toutes les informations de connexion
 function DeleteUser($pdo)
 {
     try {
-        $query = 'delete from utilisateur where id = :id';
+        $query = 'delete from utilisateur where utilisateurID = :utilisateurID';
         $delUser = $pdo->prepare($query);
         $delUser->execute([
-            'id' => $_SESSION["user"]->i
+            'utilisateurID' => $_SESSION["user"]->utilisateurID
         ]);
     } catch (PDOException $e) {
         $message = $e->getMessage();

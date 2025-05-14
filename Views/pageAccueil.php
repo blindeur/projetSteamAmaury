@@ -10,6 +10,12 @@
   <div class="main-content">
     <div class="section-title">Populaires et Recommandés</div>
     <div class="carousel">
+    <div class="game-card">
+        <img src="/Assets/images/gta6.jpg" alt="Schedule I">
+        <h3>Grand Theft Auto VI</h3>
+        <p> Précommande</p>
+        <div class="price">49,99 €</div>
+      </div>
       <div class="game-card">
         <img src="/Assets/images/Schedule.jpg" alt="Schedule I">
         <h3>Schedule I</h3>

@@ -5,7 +5,7 @@
     <li class="menu"><a href="profil">Profil</a></li>
     <li class="menu"><a href="deconnexion">déconnexion</a></li>
     <?php else : ?>  
-   <li class="menu"><a href="inscription">Inscription</a></li>   
+    <li class="menu"><a href="inscription">Inscription</a></li>   
     <li class="menu"><a href="connexion">Connexion</a></li> 
     <li class="imageMenu"><a href="inscription"><ion-icon size="large" name="person-outline"></ion-icon></a></li>
     <li class="imageMenu"> <a href="connexion"><ion-icon size="large" name="enter-outline"></ion-icon></a></li>
