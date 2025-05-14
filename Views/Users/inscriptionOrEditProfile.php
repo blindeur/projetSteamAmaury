@@ -1,6 +1,8 @@
 
 <div class="form-container" >
-    <h2>Inscription</h2>
+<?php if (isset($_SESSION['user'])) : ?>
+    <h2>profil</h2>
+    <?php else :?> <h2>inscription</h2><?php endif ?>
     <form action="" method="post">
         <label for="firstname">Nom :</label>
         <input type="text" id="Nom_utilisateur" name="Nom_utilisateur" required <?php if (isset($_SESSION['user'])) : ?>value="<?= $_SESSION['user']->utilisateurNom ?>" <?php endif ?>>  
