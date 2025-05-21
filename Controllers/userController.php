@@ -78,7 +78,7 @@ elseif ($uri ==="/deconnexion") {
 elseif ($uri === "/deleteProfil") {
 
         deleteOptionsSchoolFromUser($pdo);
-        deleteAllSchoolsFromUser($pdo);      //supprimer toutes les informations de la table école liées à l'utilisateur connecté
+        deleteAllJeuxFromUser($pdo);      //supprimer toutes les informations de la table école liées à l'utilisateur connecté
         deleteUser($pdo);                   //supprimer l'utilisateur de la tavle des utilisateurs
         header("location:/deconnexion");    // le déconnecter
     

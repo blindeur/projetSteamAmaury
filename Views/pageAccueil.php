@@ -15,31 +15,28 @@
         <h3>Grand Theft Auto VI</h3>
         <p> Précommande</p>
         <div class="price">49,99 €</div>
-      </div>
-      <div class="game-card">
-        <img src="/Assets/images/Schedule.jpg" alt="Schedule I">
-        <h3>Schedule I</h3>
-        <p>Disponible</p>
-        <div class="price">19,50€</div>
-      </div>
-      <div class="game-card">
-        <img src="/Assets/images/rustPicture.png" alt="Rust">
-        <h3>Rust</h3>
-        <p>Disponible</p>
-        <div class="price">39,99€</div>
-      </div>
-      <div class="game-card">
-        <img src="/Assets/images/cyberPicture.jpg" alt="Cyber Punk">
-        <h3>Cyber Punk</h3>
-        <p>Disponible</p>
-        <div class="price">59,99€</div>
-      </div>
-      <div class="game-card">
-        <img src="/Assets/images/bodyCamPicture.jpg" alt="Schedule I">
-        <h3>Body Cam</h3>
-        <p>Disponible</p>
-        <div class="price">33,32€</div>
-      </div>
+    </div>
+    <?php foreach ($jeux as $jeu) : ?>
+    <div>
+        <h2 class="center"><?= $jeu->jeuxTitre ?></h2>
+        <div>
+            <div class="flexible blocImageEcole">
+                <img src="<?= $jeu->jeuPicture ?>" alt="image du jeu">
+            </div>
+            <div class="center">
+                <!--<p><span><?= $jeu->schoolAdresse ?></span> - <span><?= $school->schoolCodePostal . " ". $school->schoolVille ?></span></p>
+                <h3><?= $jeu->schoolNumero ?></h3>-->
+                <a href="blilio" class="btn btn-page">bibliothéque</a>
+                 Dans le cas où on est connecté et qu'on a cliqué sur 'mes écoles', on affiche les écoles de l'utilisateur 
+                <?php if ($uri === "/biblio") : ?>
+                    <p><a href="deletejeu?jeuxID=<?= $jeu->jeuxID ?>">Supprimer le jeu</a></p>
+                    <p><a href="updatejeu?schoolId=<?= $jeu->jeuxID ?>">Modifier le jeu</a></p>
+                    <?php endif ?>
+            </div>
+        </div>
+    </div>
+    <?php endforeach ?>
+
       <!-- Ajoute d'autres jeux ici -->
     </div>
   </div>
