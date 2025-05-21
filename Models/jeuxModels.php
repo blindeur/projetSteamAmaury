@@ -25,7 +25,9 @@ Fonction deleteOptionsSchoolsUser
 BUT : supprimer les options des écoles de l'utilisateur dans la table options
 IN : $pdo reprenant toutes les informations de connexion
 */
-function deleteOptionsSchoolFromUser($dbh)
+
+
+function deleteOptionsJeuxFromUser($dbh)
 {
     try {
         $query = 'delete from option_ecole where schoolId in (select schoolId from school where utilisateurId = :utilisateurId)';

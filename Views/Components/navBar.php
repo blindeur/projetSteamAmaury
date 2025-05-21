@@ -1,7 +1,7 @@
 <ul class="flexible space-evenly">
     <li class="menu" ><a href="/">Home</a></li>
     <?php if (isset($_SESSION["user"])) : ?>  
-    <li class="menu"><a href="biblio">blibliothèque</a></li> 
+    <li class="menu"><a href="bibliotheque">bibliothèque</a></li> 
     <li class="menu"><a href="profil">Profil</a></li>
     <li class="menu"><a href="deconnexion">déconnexion</a></li>
     <?php else : ?>  
@@ -12,7 +12,7 @@
     <?php endif ?>                                                       
     <!-- petit écran -->
     <li class="imageMenu"><a href="/"><ion-icon size="large" name="home-outline"></ion-icon></a></li>
-    <li class="imageMenu"><a href="biblio"><ion-icon  size="large"  name="game-controller-outline"></ion-icon>
+    <li class="imageMenu"><a href="bibliotheque"><ion-icon  size="large"  name="game-controller-outline"></ion-icon>
     <li class="imageMenu"><a href="profil"><ion-icon size="large" name="person-outline"></ion-icon></a></li>
     
 

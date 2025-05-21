@@ -7,6 +7,7 @@
     require_once("config/connectDataBase.php");
     require_once("Controllers/indexController.php");
     require_once("Controllers/userController.php");
+    require_once("Controllers/jeuxController.php");
     
     // on ajoutera par la suite le fichier de configuration de la connextion à la bdd
     // ainsi que le session_start();

@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ma Bibliothèque de Jeux</title>
-</head>
-<body>
+
   <div class="steam-library-page">
     <header>
       <h1>Ma Bibliothèque de Jeux</h1>
@@ -34,5 +27,5 @@
       <!-- Ajoute ici d'autres jeux comme Schedule I, Bodycam, R.E.P.O avec leurs images -->
     </div>
   </div>
-</body>
-</html>
+
+
