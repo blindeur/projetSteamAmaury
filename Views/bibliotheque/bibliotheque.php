@@ -1,11 +1,14 @@
-
+<?php
+session_start();
+var_dump($_SESSION);
+?>
   <div class="steam-library-page">
     <header>
       <h1>Ma Bibliothèque de Jeux</h1>
     </header>
     <div class="library">
       <div class="game">
-        <img src="https://rust.facepunch.com/img/og.jpg" alt="Rust">
+      <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/252490/header.jpg?t=1747389753" alt="Rust">
         <h2>Rust</h2>
         <p>Survie multijoueur intense</p>
       </div>
@@ -26,6 +29,26 @@
       </div>
       <!-- Ajoute ici d'autres jeux comme Schedule I, Bodycam, R.E.P.O avec leurs images -->
     </div>
-  </div>
+    <?php
 
+// Check if $jeux is defined and not empty
+if (!empty($jeux)) {
+    foreach ($jeux as $jeu) : ?>
+        <div class="jeu">
+            <h3><?= htmlspecialchars($jeu->nom) ?></h3>
+            <p><?= htmlspecialchars($jeu->description) ?></p>
+
+            <?php if (isset($_SESSION["utilisateurStatut"]) && $_SESSION["utilisateurStatut"] === "admin") : ?>
+                <div class="btn-group">
+                    <a class="btn btn-primary" href="modifierJeux.php?jeuID=<?= $jeu->id ?>">Modifier</a>
+                    <a class="btn btn-danger" href="deleteJeu.php?jeuID=<?= $jeu->id ?>" 
+                       onclick="return confirm('Es-tu sûr de vouloir supprimer ce jeu ?');">Supprimer</a>
+                </div>
+            <?php endif; ?>
+        </div>
+    <?php endforeach;
+} else {
+    echo "<p>Aucun jeu disponible.</p>";
+}
+?>
 

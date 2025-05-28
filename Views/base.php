@@ -18,7 +18,7 @@
         <?php require_once("Views/Components/navBar.php"); ?>
     </header>
     <main class="justify-content-center align-item-center">  <!-- contenu variable => insertion Php avec variable $template qui sera définie lors du routage -->
-        <?php require_once($template); ?>
+        <?php require_once ($template) ; ?>
     </main>
     <footer>
         <?php require_once("Views/Components/footer.php"); ?>

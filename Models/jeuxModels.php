@@ -61,3 +61,17 @@ function deleteAllJeuxFromUser($pdo)
         die($message);
     }
 }
+
+
+class JeuModel {
+    private $db;
+
+    public function __construct($db) {
+        $this->db = $db;
+    }
+
+    public function getAllJeux() {
+        $query = $this->db->query("SELECT id, nom, description FROM jeux");
+        return $query->fetchAll(PDO::FETCH_OBJ);
+    }
+}
