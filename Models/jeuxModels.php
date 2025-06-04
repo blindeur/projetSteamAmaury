@@ -52,8 +52,8 @@ function deleteAllJeuxFromUser($pdo)
     try {
         //requête avec critère et paramètre ! 
         $query = 'delete from jeux where utilisateurID = :utilisateurID';
-        $deleteAllSchoolsFromId = $pdo->prepare($query);
-        $deleteAllSchoolsFromId->execute([
+        $deleteAllJeuxFromId = $pdo->prepare($query);
+        $deleteAllJeuxFromId->execute([
             'utilisateurID' => $_SESSION["user"]->id
         ]);
     } catch (PDOException $e) {
@@ -62,6 +62,60 @@ function deleteAllJeuxFromUser($pdo)
     }
 }
 
+function selectJeux($pdo)
+{
+    try {
+        //requete avec critère et paramètre !
+        $query = "select * from jeux wherr utilisateurID = :utilisateurID";
+        $selectJeux = $pdo->prepare($query);
+        $selectJeux->execute([
+            //le parametre est l'id de l'utilisateur connecté
+            'utilisateurID' => $_SESSION['user']->id
+            ]);
+            $jeux = $selectJeux->fetchAll();
+            return $jeux;
+    } catch (PDOException $e) {
+        $message = $e->getMessage();
+        die($message);
+    }
+}
+
+function selectAllType($pdo)
+{
+    try {
+        $query = 'select * from type';
+        $selectOptions = $pdo->prepare($query);
+        $selectOptions->execute();
+        $option = $selectOptions->fetchAll();
+        return $option;
+    } catch (PDOException $e) {
+        $message = $e->getMessage();
+        die($message);
+    }
+}
+
+
+function createJeux($pdo)
+{
+    try {
+        $query = 'insert into jeux (jeuxPrix, jeuxDescriptif, jeuxPegi, jeuxType, jeuxPicture, jeuxTitre)
+        values (:jeuxprix, :jeuxDescriptif, :jeuxPegi, :jeuxType, :jeuxPicture, :jeuxTitre)';
+        $addJeux = $pdo->prepare($query);
+        $addJeux->execute([
+            'jeuxTitre' => $_POST["titre"],
+            'jeuxPicture'=> $_POST['image'],
+            'jeuxDescriptif' => $_POST['descriptif'],
+            'jeuxType'=> $_POST['type'],
+            'jeuxPegi'=> $_POST['pegi'],
+            'jeuxPrix'=> $_POST['prix']
+        ]);
+    } catch (PDOException $e) {
+        $message = $e->getMessage();
+        die($message);
+    }
+            
+    
+}
 
 class JeuModel {
     private $db;

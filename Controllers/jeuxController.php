@@ -13,6 +13,37 @@ if ($uri === "/bibliotheque") {
     require_once ("Views/base.php");             //appel de la page de base qui sera remplie avec la vue demandée
 
 }
+// appel au modele pour la gestion des jeux
+require_once "Models/jeuxModels.php";
+
+//récuperation du chemin désiré
+$uir=$_SERVER["REQUEST_URI"];
+if ($uir == "") {
+    //rappel de la page d'acueil adaptée avce vérification de l'etat
+}
+elseif ($uir === "/createJeux") {
+    //si on rempli le formulaire et qu'on l'a validé
+    if (isset($_POST['btnEnvoi'])){
+        createJeux($pdo);
+        //récuperation du numéro de la dernière ligne insérée dans la table des écoles
+        $jeuID = $pdo->lastInsertId();
+        //ajout des types liées au jeu dans la table des type
+        // ne pas oublier que $_POST["type"] est un tableau 
+        for ($i = 0; $i <count($_POST["type"]); $i++) {
+            $typejeuID = $_POST["type"][$i];
+            //écriture dans la table des type
+            ajouteTypeDeJeux($pdo, $jeuID, $typejeuID);
+
+    }
+    header("location:/bibliotheque");
+}
+//récuperer les options disponibles
+$type = selectAllType($pdo);
+$title = "ajout d'un jeu";
+$template = "Views/jeux/editOrCreateJeux.php";
+require_once ("Vieuws/base.php");
+}
+
 
 class JeuController {
     private $jeuModel;

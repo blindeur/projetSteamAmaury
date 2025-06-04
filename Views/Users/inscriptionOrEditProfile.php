@@ -18,11 +18,17 @@
                        
         <label for="password">Mot de passe :</label>
         <input type="password" id="mot_de_passe" name="mot_de_passe" required required <?php if (isset($_SESSION['user'])) : ?>value="<?= $_SESSION['user']->utilisateurMotDePasse ?>" <?php endif ?>>
-                
-        <button name="btnEnvoi" class="btn btn-primary" value="inscription"><?php if (isset($_SESSION['user'])) : ?> <?= "mettre a jour "?> <?php else :?> <?= "inscription"?><?php endif ?></button>
-        <button name="btnSupp" class="btn btn-primary" value="deleteProfil"><?php if (isset($_SESSION['user'])) : ?> <?= "supp"?> <?php else :?> <?= "deleteProfil"?><?php endif ?></button>
-            
-        <a href="connexion"> connect</a>
+           
+            <?php if (isset($_SESSION['user'])) : ?>
+                <div>
+                       <button name="btnEnvoi" class="btn btn-primary" value="inscription"><?php if (isset($_SESSION['user'])) : ?>Modifier <?php else :?>Envoyer<?php endif ?></button> 
+                       <button name="btnSupp" class="btn btn-primary" value="deleteProfil"><?php if (isset($_SESSION['user'])) : ?>Supprimer <?php endif ?></button>
+                </div>
+            <?php else : ?>
+                <div>
+                      <button name="btnEnvoi" class="btn btn-primary" value="inscription"><?php if (isset($_SESSION['user'])) : ?>Modifier <?php else :?> Envoyer<?php endif ?></button>
+                </div>
+            <?php endif ?>
     </form>
 </div>
 

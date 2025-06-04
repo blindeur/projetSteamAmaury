@@ -20,30 +20,19 @@
   <div class="main-content">
     <div class="section-title">Populaires et Recommandés</div>
     <div class="carousel">
-    <div class="game-card">
-        <img src="/Assets/images/gta6.jpg" alt="GTA 6">
-        <h3>Grand Theft Auto VI</h3>
-        <p> Précommande</p>
-        <div class="price">49,99 €</div>
-    </div>
     <?php foreach ($jeux as $jeu) : ?>
-    <div>
-        <h2 class="center"><?= $jeu->jeuxTitre ?></h2>
-        <div>
-            <div class="flexible blocImageEcole">
-                <img src="<?= $jeu->jeuPicture ?>" alt="image du jeu">
-            </div>
-            <div class="center">
-            
-                <a href="bibliotheque" class="btn btn-page">bibliothéque</a>
-                 Dans le cas où on est connecté et qu'on a cliqué sur 'mes écoles', on affiche les écoles de l'utilisateur 
+      <div class="game-card">
+      <img src="<?= $jeu->jeuxPicture ?>" alt="image du jeu">
+        <h3><?= $jeu->jeuxTitre ?></h3>
+        <div class="price"><?= $jeu->jeuxPrix ?></div>
+        <p><?= $jeu->jeuxDescriptif ?></p>
+        <a href="bibliotheque" class="btn btn-page">bibliothéque</a>
                 <?php if ($uri === "/bibliotheque") : ?>
                     <p><a href="deletejeu?jeuxID=<?= $jeu->jeuxID ?>">Supprimer le jeu</a></p>
                     <p><a href="updatejeu?JeuxId=<?= $jeu->jeuxID ?>">Modifier le jeu</a></p>
                     <?php endif ?>
-            </div>
-        </div>
     </div>
+    
     <?php endforeach ?>
 
       <!-- Ajoute d'autres jeux ici -->
@@ -54,4 +43,3 @@
 <?php else :?>
   <h1>liste des jeux réportoriées</h1>
 <?php endif ?>---->
-  
