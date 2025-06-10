@@ -18,6 +18,8 @@
 
   <!-- Contenu principal -->
   <div class="main-content">
+    <a href="jeuxCree" class="btn btn-page">crée</a>
+    <p> </p>
     <div class="section-title">Populaires et Recommandés</div>
     <div class="carousel">
     <?php foreach ($jeux as $jeu) : ?>
@@ -28,8 +30,8 @@
         <p><?= $jeu->jeuxDescriptif ?></p>
         <a href="bibliotheque" class="btn btn-page">bibliothéque</a>
                 <?php if ($uri === "/bibliotheque") : ?>
-                    <p><a href="deletejeu?jeuxID=<?= $jeu->jeuxID ?>">Supprimer le jeu</a></p>
-                    <p><a href="updatejeu?JeuxId=<?= $jeu->jeuxID ?>">Modifier le jeu</a></p>
+                    <p><a href="deletejeu?jeuxID=<?= $jeux->jeuxID ?>">Supprimer le jeu</a></p>
+                    <p><a href="updatejeu?JeuxId=<?= $jeux->jeuxID ?>">Modifier le jeu</a></p>
                     <?php endif ?>
     </div>
     

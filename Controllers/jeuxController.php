@@ -21,7 +21,7 @@ $uir=$_SERVER["REQUEST_URI"];
 if ($uir == "") {
     //rappel de la page d'acueil adaptée avce vérification de l'etat
 }
-elseif ($uir === "/createJeux") {
+elseif ($uir === "/jeuxCree") {
     //si on rempli le formulaire et qu'on l'a validé
     if (isset($_POST['btnEnvoi'])){
         createJeux($pdo);
@@ -37,39 +37,12 @@ elseif ($uir === "/createJeux") {
     }
     header("location:/bibliotheque");
 }
-//récuperer les options disponibles
+
 $type = selectAllType($pdo);
 $title = "ajout d'un jeu";
-$template = "Views/jeux/editOrCreateJeux.php";
-require_once ("Vieuws/base.php");
+$template = "Views/jeux/jeuxCree.php";
+require_once('Views/base.php');
 }
 
 
-class JeuController {
-    private $jeuModel;
-
-    public function __construct($jeuModel) {
-        $this->jeuModel = $jeuModel;
-    }
-
-    public function deleteJeu() {
-        if (isset($_GET['jeuID'])) {
-            $jeuID = intval($_GET['jeuID']);
-            $this->jeuModel->deleteJeu($jeuID);
-            header("Location: bibliotheque.php");
-        }
-    }
-
-    public function updateJeu() {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['jeuID'])) {
-            $jeuID = intval($_POST['jeuID']);
-            $data = [
-                'nom' => $_POST['nom'],
-                'description' => $_POST['description']
-            ];
-            $this->jeuModel->updateJeu($jeuID, $data);
-            header("Location: bibliotheque.php");
-        }
-    }
-}
 

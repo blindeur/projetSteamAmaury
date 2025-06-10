@@ -18,7 +18,6 @@ function selectAllJeux($pdo)
     }
 }
 
-
 /*
 Fonction deleteOptionsSchoolsUser
 ---------------------------------
@@ -99,13 +98,13 @@ function createJeux($pdo)
 {
     try {
         $query = 'insert into jeux (jeuxPrix, jeuxDescriptif, jeuxPegi, jeuxType, jeuxPicture, jeuxTitre)
-        values (:jeuxprix, :jeuxDescriptif, :jeuxPegi, :jeuxType, :jeuxPicture, :jeuxTitre)';
+        values (:jeuxPrix, :jeuxDescriptif, :jeuxPegi, :jeuxType, :jeuxPicture, :jeuxTitre)';
         $addJeux = $pdo->prepare($query);
         $addJeux->execute([
             'jeuxTitre' => $_POST["titre"],
             'jeuxPicture'=> $_POST['image'],
             'jeuxDescriptif' => $_POST['descriptif'],
-            'jeuxType'=> $_POST['type'],
+            'jeuxType'=> is_array($_POST['type']) ? $_POST['type'][0] : $_POST['type'], // Prend le premier type
             'jeuxPegi'=> $_POST['pegi'],
             'jeuxPrix'=> $_POST['prix']
         ]);
@@ -113,9 +112,11 @@ function createJeux($pdo)
         $message = $e->getMessage();
         die($message);
     }
-            
-    
 }
+
+
+
+
 
 class JeuModel {
     private $db;
@@ -127,5 +128,47 @@ class JeuModel {
     public function getAllJeux() {
         $query = $this->db->query("SELECT id, nom, description FROM jeux");
         return $query->fetchAll(PDO::FETCH_OBJ);
+    }
+}
+
+class JeuController {
+    private $jeuModel;
+
+    public function __construct($jeuModel) {
+        $this->jeuModel = $jeuModel;
+    }
+
+    public function deleteJeu() {
+        if (isset($_GET['jeuID'])) {
+            $jeuID = intval($_GET['jeuID']);
+            $this->jeuModel->deleteJeu($jeuID);
+            header("Location: bibliotheque.php");
+        }
+    }
+
+    public function updateJeu() {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['jeuID'])) {
+            $jeuID = intval($_POST['jeuID']);
+            $data = [
+                'nom' => $_POST['nom'],
+                'description' => $_POST['description']
+            ];
+            $this->jeuModel->updateJeu($jeuID, $data);
+            header("Location: bibliotheque.php");
+        }
+    }
+}
+function ajouteTypeDeJeux($pdo, $jeuxID, $typeID)
+{
+    try {
+          $query = 'INSERT INTO appartient (jeuxID, typeID) VALUES (:jeuxID, :typeID)';
+    $add = $pdo->prepare($query);
+    $add->execute([
+        'jeuxID' => $jeuxID,
+        'typeID' => $typeID
+    ]);
+    } catch (PDOException $e) {
+        $message = $e->getMessage();
+        die($message);
     }
 }

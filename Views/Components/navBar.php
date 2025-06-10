@@ -15,6 +15,5 @@
     <li class="imageMenu"><a href="bibliotheque"><ion-icon  size="large"  name="game-controller-outline"></ion-icon>
     <li class="imageMenu"><a href="profil"><ion-icon size="large" name="person-outline"></ion-icon></a></li>
     
-
  </ul>
 </ul>
